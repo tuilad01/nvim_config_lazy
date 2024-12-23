@@ -64,6 +64,9 @@ vim.keymap.set("i", "[;", "[];<left><left>")
 vim.keymap.set("i", "{", "{}<left>")
 vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O")
 vim.keymap.set("i", "{;", "{<CR>};<ESC>O")
+-- TERMINAL
+vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
+
 
 -- Setup lazy.nvim
 require("lazy").setup({

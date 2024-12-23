@@ -74,6 +74,10 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 lspconfig_defaults.capabilities,
 require('cmp_nvim_lsp').default_capabilities()
 )
+--local capabilities = require('blink.cmp').get_lsp_capabilities()
+--local lspconfig = require('lspconfig')
+--
+--lspconfig['lua-ls'].setup({ capabilities = capabilities })
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -114,10 +118,15 @@ require('mason-lspconfig').setup({
 local cmp = require('cmp')
 
 cmp.setup({
+    completion = {
+        keyword_length = 1,
+        keyword_pattern = ".*",
+    },
     sources = {
         {name = 'nvim_lsp'},
         {name = 'buffer'},
-
+        {name = 'path' },
+        {name = 'vsnip' },
     },
     mapping = cmp.mapping.preset.insert({
         -- `Enter` key to confirm completion
@@ -126,14 +135,15 @@ cmp.setup({
             if cmp.visible() then
                 cmp.select_next_item()
                 cmp.confirm({select = true})
+
             else
                 fallback()
             end
         end, { "i" }),
-
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
         -- Ctrl+Space to trigger completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
-
         -- Scroll up and down in the completion documentation
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -161,3 +171,4 @@ require("lualine").setup({
         theme = "horizon",
     }
 })
+
