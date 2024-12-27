@@ -13,6 +13,7 @@ telescope.setup({
     },
 })
 
+
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Telescope find git files' })
 vim.keymap.set('n', '<leader>ps', function()
@@ -64,111 +65,37 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 
+require('lsp_signature').setup({
+    bind = true,
+    floating_window = true,
+    hint_enable = true,
+    hint_prefix = "find",
+    handler_opts = {
+        border = "rounded",
 
+    },
+    always_trigger = true,
+})
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-'force',
-lspconfig_defaults.capabilities,
-require('cmp_nvim_lsp').default_capabilities()
-)
---local capabilities = require('blink.cmp').get_lsp_capabilities()
---local lspconfig = require('lspconfig')
+--local cmp = require('cmp')
+--cmp.setup({
+--    snippet = {
+--        expand = function ()
+--            vim.fn["vsnip#anonymous"](args.body)
+--        end,
+--    },
+--    mapping = cmp.mapping.preset.insert({
+--        ['<C-Space>'] = cmp.mapping.complete(),
+--        ['<CR>'] = cmp.mapping.confirm({ select = true })
 --
---lspconfig['lua-ls'].setup({ capabilities = capabilities })
-
--- This is where you enable features that only work
--- if there is a language server active in the file
-vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'LSP actions',
-    callback = function(event)
-        local opts = {buffer = event.buf}
-
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F3>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({'n', 'x'}, '<F4>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F5>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    end,
-})
-
--- These are just examples. Replace them with the language
--- servers you have installed in your system
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    }
-})
+--    }),
+--    sources = cmp.config.sources({
+--        {name = 'nvim_lsp'},
+--    }),
+--    window = {
+--        document = cmp.config.window.bordered(),
+--    }
+--})
 
 
----
--- Autocompletion config
----
-local cmp = require('cmp')
-
-cmp.setup({
-    completion = {
-        keyword_length = 1,
-        keyword_pattern = ".*",
-    },
-    sources = {
-        {name = 'nvim_lsp'},
-        {name = 'buffer'},
-        {name = 'path' },
-        {name = 'vsnip' },
-    },
-    mapping = cmp.mapping.preset.insert({
-        -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-                cmp.confirm({select = true})
-
-            else
-                fallback()
-            end
-        end, { "i" }),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        -- Ctrl+Space to trigger completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
-        -- Scroll up and down in the completion documentation
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    }),
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-})
-
--- Html auto close tag
-require('nvim-ts-autotag').setup({
-    opts = {
-        -- Defaults
-        enable_close = true, -- Auto close tags
-        enable_rename = true, -- Auto rename pairs of tags
-        enable_close_on_slash = false -- Auto close on trailing </
-    }
-})
-
--- status line
-require("lualine").setup({
-    options = {
-        theme = "horizon",
-    }
-})
 
