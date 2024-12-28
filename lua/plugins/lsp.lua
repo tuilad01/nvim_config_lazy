@@ -15,9 +15,15 @@ local M = {
         'hrsh7th/cmp-nvim-lua',
         'ray-x/lsp_signature.nvim', -- Show inline documentation
 
+        -- command line completion
+        'nvim-lua/completion-nvim',
+        'hrsh7th/cmp-cmdline',
+
         -- Snippets
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
+        --Html auto close tag
+        'windwp/nvim-ts-autotag'
     },
     config = function ()
 
@@ -37,25 +43,3 @@ local M = {
 
 return M
 
-
-
---return {
-    --    -- LSP zero instal
-    --    'williamboman/mason.nvim',
-    --    'williamboman/mason-lspconfig.nvim', 
-    --    'neovim/nvim-lspconfig',
-    --    'hrsh7th/nvim-cmp',
-    --    'hrsh7th/cmp-buffer',
-    --    'hrsh7th/cmp-path',
-    --    'hrsh7th/cmp-nvim-lsp',
-    --    'hrsh7th/cmp-cmdline',
-    --    'hrsh7th/cmp-vsnip',
-    --    'hrsh7th/vim-vsnip',
-    --    'nvim-lua/completion-nvim',
-    --
-    --    -- Snippets
-    --    'L3MON4D3/LuaSnip',
-    --    'rafamadriz/friendly-snippets',
-    --    -- Html auto close tag
-    --    'windwp/nvim-ts-autotag'
-    --}
