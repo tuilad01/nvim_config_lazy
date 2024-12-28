@@ -1,9 +1,8 @@
 return {
     "sindrets/diffview.nvim",
     config = function ()
-        vim.api.nvim_set_keymap('n', '<leader>cc', ':DiffviewOpen<Cr>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<leader>cl', ':DiffviewClose<Cr>', { noremap = true, silent = true })
-
-
+        vim.keymap.set('n', '<leader>cc', ':DiffviewOpen<Cr>')
+        vim.keymap.set('n', '<leader>cl', ':DiffviewClose<Cr>')
+        vim.keymap.set('n', '<leader>cg', ':DiffviewFileHistory<Cr>')
     end
 }
