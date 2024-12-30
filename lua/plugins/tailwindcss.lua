@@ -4,7 +4,7 @@
 return {
 
     "luckasRanarison/tailwind-tools.nvim",
-    lazy = true,
+    event = "InsertEnter",
     name = "tailwind-tools",
     build = ":UpdateRemotePlugins", -- npm install -g neovim
     dependencies = {
