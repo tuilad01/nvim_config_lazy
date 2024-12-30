@@ -1,7 +1,5 @@
 require("config.lazy")
-
-
-
+--
 --local cmp = require('cmp')
 --cmp.setup({
 --    snippet = {

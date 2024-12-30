@@ -51,19 +51,18 @@ vim.opt.cursorline = true
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set({ "n", "v" }, "<leader>pp", "\"+p")
 vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+y")
-vim.keymap.set("n", "<A-S-f>", "gg<S-v>G=")
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Auto close brackets
-vim.keymap.set("i", "\"", "\"\"<left>")
-vim.keymap.set("i", "'", "''<left>")
-vim.keymap.set("i", "(", "()<left>")
-vim.keymap.set("i", "(;", "();<left><left>")
-vim.keymap.set("i", "[", "[]<left>")
-vim.keymap.set("i", "[;", "[];<left><left>")
-vim.keymap.set("i", "{", "{}<left>")
-vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O")
-vim.keymap.set("i", "{;", "{<CR>};<ESC>O")
+--vim.keymap.set("i", "\"", "\"\"<left>")
+--vim.keymap.set("i", "'", "''<left>")
+--vim.keymap.set("i", "(", "()<left>")
+--vim.keymap.set("i", "(;", "();<left><left>")
+--vim.keymap.set("i", "[", "[]<left>")
+--vim.keymap.set("i", "[;", "[];<left><left>")
+--vim.keymap.set("i", "{", "{}<left>")
+--vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O")
+--vim.keymap.set("i", "{;", "{<CR>};<ESC>O")
 
 -- TERMINAL
 --vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
