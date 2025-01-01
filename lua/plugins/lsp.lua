@@ -31,6 +31,11 @@ local M = {
         },
         config = function ()
             local cmp = require('cmp')
+            cmp.setup {
+                sources = {
+                    { name = "nvim_lsp" }
+                }
+            }
             cmp.setup.cmdline(':', {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
