@@ -1,9 +1,10 @@
 local M = {
     'williamboman/mason.nvim',
-    event = "CmdlineEnter",
+    event = "BufAdd",
     dependencies = {
         'williamboman/mason-lspconfig.nvim',
         'nvim-lua/plenary.nvim',
+        'Hoffs/omnisharp-extended-lsp.nvim',
     },
 }
 
@@ -32,12 +33,28 @@ local M = {
 
         require "mason-lspconfig".setup_handlers {
             function (server_name)
+
                 require "lspconfig" [server_name].setup {}
+                if server_name == "omnisharp" then
+                    require("lspconfig").omnisharp.setup({
+                        handlers = {
+                            ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+                            ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+                            ["textDocument/references"] = require('omnisharp_extended').references_handler,
+                            ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+
+                        },
+                        RoslynExtensionsOptions= {
+                            EnableDecompilationSupport = true
+                        }
+
+                    })
+                end
             end
         }
 
         require("mason-lspconfig").setup {
---            ensure_installed = M.servers,
+            --            ensure_installed = M.servers,
             automatic_installation = true,
         }
 

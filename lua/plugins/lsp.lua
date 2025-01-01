@@ -2,7 +2,7 @@
 local M = {
     {
         'VonHeikemen/lsp-zero.nvim',
-        event = "BufEnter",
+        event = "BufAdd",
         branch = "v1.x",
         dependencies = {
             -- LSP support

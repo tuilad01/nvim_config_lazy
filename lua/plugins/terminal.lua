@@ -58,5 +58,12 @@ vim.api.nvim_create_user_command('Termf', function ()
 end, {})
 vim.keymap.set({"n", "t"}, "<leader>tt", toggle_terminal, {})
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
-
+--vim.api.nvim_create_autocmd('ExitPre', {
+--    desc = 'toggle before exiting neovim',
+--    callback = function(event)
+--        if vim.api.nvim_win_is_valid(state.floading.win) then
+--            toggle_terminal()
+--        end
+--    end
+--})
 return {}
