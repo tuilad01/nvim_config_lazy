@@ -12,14 +12,26 @@ return {
         -- command line completion
         'nvim-lua/completion-nvim',
         'hrsh7th/cmp-cmdline',
-
+        'kristijanhusak/vim-dadbod-completion',
     },
     config = function()
         local cmp = require('cmp')
         cmp.setup {
             sources = {
-                { name = "nvim_lsp" }
-            }
+                {
+                    name = "nvim_lsp",
+                },
+                {
+                    name = 'vim-dadbod-completion'
+                }
+            },
+            mapping = cmp.mapping.preset.insert({
+                ['<C-n>'] = cmp.mapping.select_next_item(),
+                ['<C-p>'] = cmp.mapping.select_prev_item(),
+                ['<Tab>'] = cmp.mapping.select_next_item(),
+                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+            })
         }
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
