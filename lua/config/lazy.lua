@@ -52,7 +52,8 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set({ "n", "v" }, "<leader>pp", "\"+p")
 vim.keymap.set({ "n", "v" }, "<leader>yy", "\"+y")
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
-
+vim.keymap.set('v', '$', 'g_')
+vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 -- Auto close brackets
 --vim.keymap.set("i", "\"", "\"\"<left>")
 --vim.keymap.set("i", "'", "''<left>")

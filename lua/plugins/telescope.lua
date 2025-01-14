@@ -31,5 +31,6 @@ return {
                 additional_args = { "--glob", "!**/.git/*",  "--glob", "!**/node_modules/*" }
             })
         end)
+        vim.keymap.set('n', '<leader>km', function() builtin.keymaps() end, { desc = "Telescope shows keymaps" })
     end
 }
