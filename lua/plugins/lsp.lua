@@ -16,6 +16,7 @@ local M = {
             'windwp/nvim-ts-autotag'
         },
         config = function ()
+            require('lsp-zero').setup();
 
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
