@@ -18,12 +18,10 @@ return {
         local cmp = require('cmp')
         cmp.setup {
             sources = {
-                {
-                    name = "nvim_lsp",
-                },
-                {
-                    name = 'vim-dadbod-completion'
-                }
+                { name = "nvim_lsp" },
+                { name = 'path' },
+                { name = 'buffer' },
+                { name = 'vim-dadbod-completion' },
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -53,7 +51,7 @@ return {
             },
             always_trigger = true,
         })
-
     end
+
 
 }
